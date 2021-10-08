@@ -13,7 +13,6 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import Dialog from "react-native-dialog";
 import Task from "./components/Task";
 
 export default function App() {
