@@ -20,9 +20,8 @@ export default function App() {
   const [taskItems, setTaskItems] = useState([]);
   const [showDialog, setShowDialog] = useState(false);
   const [dialogResponse, setDialogResponse] = useState(false);
-
   const [dialogMessage, setDialogMessage] = useState(false);
-
+  const [selectedId , setSelectedId] = useState(-1);
   // const handleAddTask = () => {
   //   console.log(task)
   //   if (task.length > 0) {
@@ -50,6 +49,7 @@ export default function App() {
   const completeTask = (index) => {
     // console.log(index)
     let itemsCopy = [...taskItems];
+    setSelectedId(index);
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
   };
@@ -83,12 +83,17 @@ const openDialogue= (message)=>{
       </View>
     </View>
   )
-
   const dialogAction = (action) => {
     setDialogResponse(action?true:false);
-    setShowDialog(false);
-    completeTask()
-  }
+    if (action) {
+      completeTask(selectedId);}
+      setShowDialog(false);
+    }
+  // const dialogAction = (action) => {
+  //   setDialogResponse(action?true:false);
+  //   setShowDialog(false);
+  //   completeTask(selectedId);
+  // }
 
   return (
     <View style={styles.container}>
